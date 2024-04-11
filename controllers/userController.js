@@ -1,5 +1,5 @@
 // Importar modelo de user y helpers
-import userModel from "../models/user.js";
+import userModel from "../models/User.js";
 import validate from "../helpers/validate.js";
 import * as jwt from "../helpers/jwt.js";
 import generatePassword from "../helpers/passGenerator.js";
