@@ -333,7 +333,7 @@ const showAvatar = (req, res) => {
 
             // montar el path completo de la imagen
             const fileName = user.image;
-            const filePath = process.env.RAILWAY_VOLUME_MOUNT_PATH.concat(fileName);
+            const filePath = process.env.RAILWAY_VOLUME_MOUNT_PATH + "/" + fileName;
 
             // Comprbar que existe el fichero
             fs.stat(filePath, (error, exists) => {
