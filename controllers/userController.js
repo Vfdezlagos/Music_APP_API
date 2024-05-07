@@ -337,12 +337,13 @@ const showAvatar = (req, res) => {
 
             // Comprbar que existe el fichero
             fs.stat(filePath, (error, exists) => {
-                if(error || !exists) return res.status(404).send({
+                if (error || !exists) return res.status(404).send({
                     status: 'Error',
-                    message: 'El archivo no existe'
+                    message: 'El archivo no existe',
+                    error
                 });
 
-                 // devolver el fichero
+                // devolver el fichero
                 return res.sendFile(path.resolve(filePath));
             });
         })
