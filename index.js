@@ -10,7 +10,6 @@ import userRouter from "./routes/userRoutes.js";
 import albumRouter from "./routes/albumRoutes.js";
 import artistRouter from "./routes/artistRoutes.js";
 import songRouter from "./routes/songRoutes.js";
-import config from "./config.js";
 
 // Mensaje bienvenida
 console.log('Running API-APP-MUSICAL with NODEJS')
@@ -20,7 +19,7 @@ connection();
 
 // Crear servidor node
 const app = express();
-const port = config.PORT;
+const port = process.env.PORT;
 
 // configurar cors
 app.use(cors());

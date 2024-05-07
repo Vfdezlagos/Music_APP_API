@@ -1,10 +1,9 @@
 // Importar dependencias
 import jwt from 'jwt-simple';
 import moment from 'moment';
-import config from '../config.js';
 
 // Clave secreta
-const secret = config.JWT_KEY;
+const secret = process.env.JWT_KEY;
 
 // Crear funcion para generar tokens
 const createToken = (user) => {

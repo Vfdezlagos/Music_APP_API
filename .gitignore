@@ -1,3 +1,5 @@
 node_modules
 config.js
 startServer.bat
+.env
+.DS_Stores

@@ -1,11 +1,10 @@
 // importar mongoose
 import mongoose from "mongoose";
-import config from "../config.js";
 
 // Metodod e conexion
 const connection = async() => {
     try{
-        await mongoose.connect(config.HOST);
+        await mongoose.connect(process.env.DB_URL);
         console.log('Connected to DB app_musica')
     }catch(exception){
         console.log(exception)
