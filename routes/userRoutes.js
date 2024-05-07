@@ -12,7 +12,7 @@ const userRouter = Router();
 // Configuracion de subida multer
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './uploads/avatars/');
+        cb(null, process.env.RAILWAY_VOLUME_MOUNT_PATH);
     },
     filename: (req, file, cb) => {
         cb(null, 'avatar-' + Date.now() + '-' + file.originalname);
