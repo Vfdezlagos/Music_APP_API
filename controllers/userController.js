@@ -317,6 +317,48 @@ const uploadImage = (req, res) => {
         });
 }
 
+const deleteAvatar = async (req, res) => {
+    // Obtener id del usuario identificado o pasado por parametro
+    const userId = req.params.id ? req.params.id : req.user.id;
+    
+    // hacer un findByIdAndUpdate pasando el parametro de image
+    await userModel.findById(userId).exec()
+        .then(user => {
+            if(!user || user.length == 0) return res.status(404).send({
+                status: 'Error',
+                message: 'No se encontró el usuario'
+            });
+
+            const imagePath = process.env.RAILWAY_VOLUME_MOUNT_PATH + "/" + user.image;
+            fs.unlinkSync(imagePath);
+
+            userModel.findByIdAndUpdate(userId, {image: 'default.png'}, {new: true}).exec()
+                .then(updatedUser => {
+                    if(!updatedUser || updatedUser.length == 0) return res.status(404).send({
+                        status: 'Error',
+                        message: 'No se encontró el usuario'
+                    });
+
+                    return res.status(200).send({
+                        status: 'Success',
+                        message: 'Imagen eliminada con exito'
+                    });
+                })
+                .catch(error => {
+                    return res.status(500).send({
+                        status: 'Error',
+                        message: 'Error al intentar actualizar el usuario'
+                    });
+                });
+        })
+        .catch(error => {
+            return res.status(500).send({
+                status: 'Error',
+                message: 'Error al intentar actualizar el usuario'
+            });
+        });
+}
+
 // Mostrar avatar del usuario
 const showAvatar = (req, res) => {
     // sacar el parametro de la url
@@ -536,5 +578,6 @@ export {
     showAvatar,
     listUsers,
     roleChange,
-    passwordChange
+    passwordChange,
+    deleteAvatar
 }

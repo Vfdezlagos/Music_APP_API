@@ -31,6 +31,7 @@ userRouter.put('/update', auth, userController.update);
 userRouter.post('/upload', [ auth, uploads.single('file0')], userController.uploadImage);
 userRouter.get('/avatar/:id?', auth, userController.showAvatar);
 userRouter.get('/list/:page?', auth, userController.listUsers);
+userRouter.delete('/deleteavatar/:id?', auth, userController.deleteAvatar);
 
 // Rutas para admin
 userRouter.put('/role_change/:id', auth, userController.roleChange);
